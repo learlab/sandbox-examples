@@ -10,7 +10,7 @@ export function JSRunner() {
 		<Provider>
 			<Runner />
 
-			<div className="grid grid-cols-2 grid-rows-[1fr_40px] max-h-96 border-b border-t py-4">
+			<div className="grid grid-cols-2 grid-rows-[1fr_40px] max-h-96 border-b border-t pt-4">
 				<div className="col-span-1 row-span-2">
 					<CodeEditor />
 				</div>

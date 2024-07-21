@@ -40,7 +40,7 @@ export const InlineEditor = () => {
 	};
 
 	return (
-		<div className="flex items-center gap-1 border-t bg-white h-[40px]">
+		<div className="flex items-center gap-1 border-t">
 			<div className="flex items-center h-full">
 				<ArrowRightIcon className="size-4" />
 			</div>
