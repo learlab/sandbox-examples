@@ -1,5 +1,5 @@
 "use client";
-import { Editor } from "@monaco-editor/react";
+import dynamic from "next/dynamic";
 import { useContext } from "react";
 import { Context } from "./context";
 
@@ -10,6 +10,11 @@ for (let i = 0; i < 10; i++) {
 }
 console.log({a: 1, b: 2})
 `;
+
+const Editor = dynamic(
+	() => import("@monaco-editor/react").then((mod) => mod.Editor),
+	{ ssr: false, loading: () => <div>Loading ...</div> },
+);
 
 export const CodeEditor = () => {
 	const { editorRef } = useContext(Context);

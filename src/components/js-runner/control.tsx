@@ -1,8 +1,5 @@
 "use client";
 
-import prettier from "prettier";
-import prettierPluginBabel from "prettier/plugins/babel";
-import prettierPluginEstree from "prettier/plugins/estree";
 import { useContext } from "react";
 import { Context } from "./context";
 
@@ -19,6 +16,13 @@ export const Control = () => {
 				onClick={async () => {
 					if (editorRef.current) {
 						const code = editorRef.current.getValue();
+						const prettier = (await import("prettier")).default;
+						const prettierPluginBabel = (await import("prettier/plugins/babel"))
+							.default;
+						const prettierPluginEstree = (
+							await import("prettier/plugins/estree")
+						).default;
+
 						const result = await prettier.format(code, {
 							parser: "babel",
 							semi: false,
