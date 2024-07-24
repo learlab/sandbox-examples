@@ -5,24 +5,29 @@ import { InlineEditor } from "./inline-editor";
 import { Output } from "./output";
 import { Runner } from "./runner";
 
+const initialCode = `console.log("hello world");
+console.info(Math.min)
+for (let i = 0; i < 10; i++) {
+ console.warn(1)
+}
+console.log({a: 1, b: 2})
+`;
+
 export function JSRunner() {
 	return (
-		<Provider>
-			<Runner />
+		<Provider initial={initialCode}>
+			<div className="grid gap-1">
+				<Runner />
 
-			<div className="grid grid-cols-2 grid-rows-[1fr_40px] max-h-96 border-b border-t pt-4">
-				<div className="col-span-1 row-span-2">
-					<CodeEditor />
-				</div>
-				<div className="col-span-1 row-span-1">
+				<Control />
+				<div className="flex flex-col">
+					<div className="border-b pb-4">
+						<CodeEditor />
+					</div>
 					<Output />
-				</div>
-				<div className="col-span-1 row-span-1">
 					<InlineEditor />
 				</div>
 			</div>
-
-			<Control />
 		</Provider>
 	);
 }

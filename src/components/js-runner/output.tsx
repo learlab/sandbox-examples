@@ -1,6 +1,6 @@
 "use client";
-import { Console as LogOutput } from "@learlab/console";
 import { useContext } from "react";
+import { Console as LogOutput } from "react-console-viewer";
 import { Context } from "./context";
 
 export const Output = () => {
@@ -12,7 +12,6 @@ export const Output = () => {
 			id="output"
 			// @ts-ignore
 			styles={{ BASE_FONT_SIZE: "14px" }}
-			className="overflow-y-scroll h-64"
 		/>
 	);
 };

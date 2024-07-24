@@ -1,17 +1,33 @@
 "use client";
 
+import { CodeIcon, RefreshCwIcon, TriangleIcon } from "lucide-react";
 import { useContext } from "react";
+import { Button } from "../button";
 import { Context } from "./context";
 
 export const Control = () => {
-	const { editorRef, runCode } = useContext(Context);
+	const { editorRef, runCode, setLogs, reset } = useContext(Context);
 
 	return (
-		<div className="flex gap-2">
-			<button type="button" onClick={() => runCode()} aria-label="Run code">
-				Run
-			</button>
-			<button
+		<div className="flex gap-1">
+			<Button
+				variant={"outline"}
+				size={"sm"}
+				type="button"
+				onClick={() => {
+					setLogs([]);
+					runCode();
+				}}
+				aria-label="Run code"
+			>
+				<span className="inline-flex items-center gap-2">
+					<TriangleIcon className="size-3 rotate-90" />
+					Run
+				</span>
+			</Button>
+			<Button
+				variant={"outline"}
+				size={"sm"}
 				type="button"
 				onClick={async () => {
 					if (editorRef.current) {
@@ -33,8 +49,17 @@ export const Control = () => {
 					}
 				}}
 			>
-				Format
-			</button>
+				<span className="inline-flex items-center gap-2">
+					<CodeIcon className="size-3" />
+					Format
+				</span>
+			</Button>
+			<Button variant={"outline"} size={"sm"} onClick={reset}>
+				<span className="inline-flex items-center gap-2">
+					<RefreshCwIcon className="size-3 rotate-90" />
+					Reset
+				</span>
+			</Button>
 		</div>
 	);
 };

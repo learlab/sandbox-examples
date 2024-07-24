@@ -3,30 +3,23 @@ import dynamic from "next/dynamic";
 import { useContext } from "react";
 import { Context } from "./context";
 
-const initialCode = `console.log("hello world");
-console.info(Math.min)
-for (let i = 0; i < 10; i++) {
- console.warn(1)
-}
-console.log({a: 1, b: 2})
-`;
-
 const Editor = dynamic(
 	() => import("@monaco-editor/react").then((mod) => mod.Editor),
 	{ ssr: false, loading: () => <div>Loading ...</div> },
 );
 
 export const CodeEditor = () => {
-	const { editorRef } = useContext(Context);
+	const { editorRef, initial } = useContext(Context);
 
 	return (
 		<Editor
 			width="100%"
+			className="min-h-[150px]"
 			language="javascript"
 			theme="light"
-			defaultValue={initialCode}
 			onMount={(e) => {
 				editorRef.current = e;
+				e.setValue(initial);
 			}}
 			options={{
 				autoIndent: "full",
@@ -39,6 +32,7 @@ export const CodeEditor = () => {
 				fontSize: 18,
 				lineHeight: 24,
 				hideCursorInOverviewRuler: true,
+				renderLineHighlight: "none",
 				overviewRulerBorder: false,
 				matchBrackets: "always",
 				minimap: {
@@ -48,6 +42,7 @@ export const CodeEditor = () => {
 					verticalSliderSize: 8,
 				},
 				selectOnLineNumbers: true,
+				lineNumbersMinChars: 2,
 				roundedSelection: false,
 				readOnly: false,
 				cursorStyle: "line",

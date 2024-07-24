@@ -1,5 +1,5 @@
 "use client";
-import { ArrowRightIcon } from "lucide-react";
+import { ArrowRightIcon, ChevronRight } from "lucide-react";
 import { useContext } from "react";
 import { Context } from "./context";
 
@@ -27,7 +27,6 @@ export const InlineEditor = () => {
 		if (e.key === "Enter") {
 			e.preventDefault();
 			const output = document.querySelector("#output");
-			console.log("output", output);
 			if (output) {
 				output.scrollTop = output.scrollHeight;
 			}
@@ -40,12 +39,13 @@ export const InlineEditor = () => {
 	};
 
 	return (
-		<div className="flex items-center gap-1 border">
-			<div className="flex items-center h-full">
-				<ArrowRightIcon className="size-4" />
+		<div className="flex items-center gap-2 ">
+			<div className="pl-1">
+				<ChevronRight className="size-5 fill-blue-500" />
 			</div>
 			<textarea
-				className="flex-1 h-[40px] p-[7px]"
+				className="flex-1 py-[7px]"
+				rows={1}
 				style={{ fontFamily: "PT Mono, monospace" }}
 				onKeyDown={handleKeydown}
 			/>
